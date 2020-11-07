@@ -1,9 +1,10 @@
 package cmd
 
 import (
+	"first_go_app/internal/server"
+
 	"fmt"
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 )
 
 var serve = &cobra.Command{
@@ -11,8 +12,9 @@ var serve = &cobra.Command{
 	Short: "Just a test command TODO...",
 	Long:  `long description here TODO...`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("TODO: serve API Server...")
-		fmt.Println(viper.GetString("server.host") + ":" + viper.GetString("server.port"))
+		fmt.Println("Serving API Server...")
+		serve := server.New()
+		serve.Run()
 	},
 }
 
