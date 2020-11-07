@@ -1,18 +1,23 @@
 package api
 
 import (
-	"encoding/json"
+	"first_go_app/pkg/utils"
+
 	"net/http"
 )
 
 func (api *API) InitTests() {
-	api.Routes.Users.HandleFunc("", getTests).Methods(http.MethodGet)
+	api.Routes.Tests.HandleFunc("", getTests).Methods(http.MethodGet)
 	//todo: more routes here
 }
 
 func getTests(w http.ResponseWriter, r *http.Request) {
 	//todo: use model and unify Response via http util?
 	//todo: this is just a response test
-	bytes, _ := json.Marshal(r)
-	w.Write(bytes)
+	rs := utils.Response{
+		Status:  http.StatusOK,
+		Message: "Hello",
+		Data:    "World",
+	}
+	rs.Send(w)
 }

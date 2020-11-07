@@ -1,7 +1,7 @@
 package server
 
 import (
-	"first_go_app/internal/api"
+	"first_go_app/internal/middlewares"
 	"github.com/gorilla/mux"
 	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
@@ -25,8 +25,8 @@ func New() *Server {
 
 func (s *Server) Run() {
 	s.InitDatabase()
-	api.Init(s.Router, s.Database)
-
+	s.initServices()
+	s.Router.Use(middlewares.Json)
 	addr := viper.GetString("server.host") + ":" + viper.GetString("server.port")
 	httpserver := &http.Server{
 		Addr:    addr,

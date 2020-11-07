@@ -16,10 +16,8 @@ type Routes struct {
 	Root    *mux.Router
 	ApiRoot *mux.Router
 
-	Users           *mux.Router
-	Groups          *mux.Router
-	Scopes          *mux.Router
-	ResourceServers *mux.Router
+	Index *mux.Router
+	Tests *mux.Router
 }
 
 // Init the api1 service
@@ -30,9 +28,10 @@ func Init(root *mux.Router, database *gorm.DB) *API {
 
 	api.Routes.Root = root
 	api.Routes.ApiRoot = api.Routes.Root.PathPrefix("").Subrouter()
+	api.Routes.Index = api.Routes.ApiRoot.PathPrefix("/").Subrouter()
+	api.Routes.Tests = api.Routes.ApiRoot.PathPrefix("/tests").Subrouter()
 
-	api.Routes.Users = api.Routes.ApiRoot.PathPrefix("/tests").Subrouter()
-
+	api.InitIndex()
 	api.InitTests()
 
 	fmt.Println("api routes loaded")
