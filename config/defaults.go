@@ -13,6 +13,6 @@ func SetDefaults() {
 	viper.SetDefault("database.password", "password")
 	viper.SetDefault("database.host", "127.0.0.1")
 	viper.SetDefault("database.port", "3306")
-	viper.SetDefault("database.name", "nyx")
+	viper.SetDefault("database.name", "mystixapi")
 
 }

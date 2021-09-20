@@ -8,7 +8,6 @@ import (
 
 func (api *API) InitTests() {
 	api.Routes.Tests.HandleFunc("", getTests).Methods(http.MethodGet)
-	//todo: more routes here
 }
 
 func getTests(w http.ResponseWriter, r *http.Request) {

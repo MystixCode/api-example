@@ -7,7 +7,6 @@ import (
 
 func (api *API) InitIndex() {
 	api.Routes.Index.HandleFunc("/", getIndex).Methods(http.MethodGet)
-	//todo: more routes here
 }
 
 func getIndex(w http.ResponseWriter, r *http.Request) {
