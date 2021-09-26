@@ -4,6 +4,7 @@ import (
 	"first_go_app/internal/api"
 	"first_go_app/internal/middlewares"
 	"first_go_app/pkg/logger"
+
 	"github.com/gorilla/mux"
 	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
@@ -72,7 +73,7 @@ func (s *Server) InitRouter() {
 		s.Router.Use(middlewares.Logging)
 		logger.Debug("Debug Mode enabled")
 	}
-	logger.Info("Router initialised")
+	logger.Info("router initialised")
 }
 
 func (s *Server) InitHttpServer() {

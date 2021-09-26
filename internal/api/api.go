@@ -20,7 +20,6 @@ type Routes struct {
 	Users *mux.Router
 }
 
-// Init the api1 service
 func Init(root *mux.Router, database *gorm.DB) *API {
 	var api API
 	api.Routes = &Routes{}

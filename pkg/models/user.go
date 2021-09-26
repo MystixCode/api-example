@@ -1,11 +1,6 @@
 package models
 
 import (
-	//	"github.com/authenter/nyx/pkg/errors"
-	//	"github.com/authenter/nyx/pkg/logger"
-	//	"gorm.io/gorm/logger"
-
-	//	"github.com/google/uuid"
 	"gorm.io/gorm"
 
 	"time"

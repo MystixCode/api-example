@@ -3,9 +3,11 @@ package cmd
 import (
 	"first_go_app/config"
 	"first_go_app/pkg/logger"
-	"fmt"
+
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
+
+	"fmt"
 	"os"
 )
 

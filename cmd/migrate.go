@@ -2,9 +2,7 @@ package cmd
 
 import (
 	"first_go_app/internal/server"
-	"fmt"
-
-	//"first_go_app/pkg/logger"
+	"first_go_app/pkg/logger"
 	"first_go_app/pkg/models"
 
 	"github.com/spf13/cobra"
@@ -19,14 +17,10 @@ var migrateCmd = &cobra.Command{
 		serve.InitDatabase()
 		err := serve.Database.AutoMigrate(
 			models.User{},
-			//			models.Group{},
-			//			models.Scope{},
-			//			models.ResourceServer{},
-			//			models.Client{},
+			//models.Test{},
 		)
 		if err != nil {
-			fmt.Println(err)
-			//			logger.Fatal(err)
+			logger.Fatal(err)
 		}
 	},
 }
