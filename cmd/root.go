@@ -33,7 +33,6 @@ func init() {
 }
 
 func initConfig() {
-
 	cobra.OnInitialize(config.SetDefaults, logger.Init)
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is ./config.json)")
 

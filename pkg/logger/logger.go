@@ -15,7 +15,7 @@ var (
 
 func Init() {
 	if viper.GetBool("logger.debug") {
-		logger = log.New(os.Stdout, "LOG ", log.Ldate|log.Ltime)
+		logger = log.New(os.Stdout, "LOG ", log.Lshortfile)
 	} else {
 		if _, err := os.Stat(viper.GetString("logger.logfile_path")); os.IsNotExist(err) {
 			err = os.Mkdir(viper.GetString("logger.logfile_path"), 0755)
@@ -30,13 +30,9 @@ func Init() {
 		}
 		logger = log.New(f, "LOG ", log.Ldate|log.Ltime)
 	}
-
-	if viper.GetBool("logger.debug") {
-		logger.SetFlags(log.Lshortfile)
-	}
 }
 
-// Debug are logged here
+// Debug is logged here
 func Debug(args ...interface{}) {
 	if viper.GetBool("logger.debug") {
 		col := color.New(color.FgHiWhite, color.BgBlue, color.Bold).SprintfFunc()
@@ -45,7 +41,7 @@ func Debug(args ...interface{}) {
 	}
 }
 
-// Info  are logged here
+// Info is logged here
 func Info(args ...interface{}) {
 	if viper.GetBool("logger.debug") {
 		col := color.New(color.FgHiWhite, color.BgGreen, color.Bold).SprintfFunc()
@@ -56,7 +52,7 @@ func Info(args ...interface{}) {
 	logger.Println(fmt.Sprint(args...))
 }
 
-// Warning  are logged here
+// Warning is logged here
 func Warning(args ...interface{}) {
 	if viper.GetBool("logger.debug") {
 		col := color.New(color.FgHiWhite, color.BgYellow, color.Bold).SprintfFunc()
@@ -67,7 +63,7 @@ func Warning(args ...interface{}) {
 	logger.Println(fmt.Sprint(args...))
 }
 
-// Error (normal errors) are logged here
+// Error (normal error) is logged here
 func Error(args ...interface{}) {
 	if viper.GetBool("logger.debug") {
 		col := color.New(color.FgHiWhite, color.BgHiRed, color.Bold).SprintfFunc()
@@ -78,7 +74,7 @@ func Error(args ...interface{}) {
 	logger.Println(fmt.Sprint(args...))
 }
 
-// Fatal errors are logged here
+// Fatal error is logged here
 func Fatal(args ...interface{}) {
 	if viper.GetBool("logger.debug") {
 		col := color.New(color.FgHiWhite, color.BgRed, color.Bold).SprintfFunc()
@@ -89,7 +85,7 @@ func Fatal(args ...interface{}) {
 	logger.Fatal(fmt.Sprint(args...))
 }
 
-// Panic errors are logged here
+// Panic error is logged here
 func Panic(args ...interface{}) {
 	if viper.GetBool("logger.debug") {
 		col := color.New(color.FgHiWhite, color.BgHiMagenta, color.Bold).SprintfFunc()
