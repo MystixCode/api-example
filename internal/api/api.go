@@ -1,7 +1,6 @@
 package api
 
 import (
-	"fmt"
 	"github.com/gorilla/mux"
 	"gorm.io/gorm"
 )
@@ -18,6 +17,7 @@ type Routes struct {
 
 	Index *mux.Router
 	Tests *mux.Router
+	Users *mux.Router
 }
 
 // Init the api1 service
@@ -30,10 +30,11 @@ func Init(root *mux.Router, database *gorm.DB) *API {
 	api.Routes.ApiRoot = api.Routes.Root.PathPrefix("").Subrouter()
 	api.Routes.Index = api.Routes.ApiRoot.PathPrefix("/").Subrouter()
 	api.Routes.Tests = api.Routes.ApiRoot.PathPrefix("/tests").Subrouter()
+	api.Routes.Users = api.Routes.ApiRoot.PathPrefix("/users").Subrouter()
 
 	api.InitIndex()
 	api.InitTests()
+	api.InitUsers()
 
-	fmt.Println("api routes loaded")
 	return &api
 }

@@ -2,17 +2,17 @@ package cmd
 
 import (
 	"first_go_app/internal/server"
+	"first_go_app/pkg/logger"
 
-	"fmt"
 	"github.com/spf13/cobra"
 )
 
 var serve = &cobra.Command{
 	Use:   "serve",
-	Short: "Just a test command TODO...",
-	Long:  `long description here TODO...`,
+	Short: "Start the API Server",
+	Long:  `Starts Database, Api, Router and HttpServer`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Serving API Server...")
+		logger.Info("Serving API Server...")
 		serve := server.New()
 		serve.Run()
 	},

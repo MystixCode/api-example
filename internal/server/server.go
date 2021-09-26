@@ -3,6 +3,7 @@ package server
 import (
 	"first_go_app/internal/api"
 	"first_go_app/internal/middlewares"
+	"first_go_app/pkg/logger"
 	"github.com/gorilla/mux"
 	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
@@ -14,27 +15,26 @@ import (
 )
 
 type Server struct {
-	Router   *mux.Router
-	Database *gorm.DB
+	HttpServer *http.Server
+	Router     *mux.Router
+	Database   *gorm.DB
+	//	Api			*api.API
 }
 
 func New() *Server {
-	var server Server
-	server.Router = mux.NewRouter()
-	return &server
+	var s Server
+	s.Router = mux.NewRouter()
+	return &s
 }
 
 func (s *Server) Run() {
 	s.InitDatabase()
-	api.Init(s.Router, s.Database)
-	s.Router.Use(middlewares.Json)
-	addr := viper.GetString("server.host") + ":" + viper.GetString("server.port")
-	httpserver := &http.Server{
-		Addr:    addr,
-		Handler: s.Router,
-	}
-	fmt.Println("HTTP Server started listening on " + addr)
-	fmt.Println(httpserver.ListenAndServe())
+	s.InitApi()
+	s.InitRouter()
+	s.InitHttpServer()
+
+	logger.Info("HTTP Server started listening on ", s.HttpServer.Addr)
+	logger.Fatal(s.HttpServer.ListenAndServe())
 }
 
 func (s *Server) InitDatabase() {
@@ -53,8 +53,32 @@ func (s *Server) InitDatabase() {
 	s.Database, err = gorm.Open(mysql.Open(dsn), &config)
 
 	if err != nil {
-		fmt.Println(err)
+		logger.Fatal(err)
 	} else {
-		fmt.Println("Connected to database")
+		logger.Info("Database initialised")
 	}
+}
+
+func (s *Server) InitApi() {
+	//TODO.....
+	api.Init(s.Router, s.Database)
+	logger.Info("Api initialised")
+}
+
+func (s *Server) InitRouter() {
+	s.Router.Use(middlewares.Json)
+	if viper.GetBool("logger.debug") {
+		s.Router.Use(middlewares.Logging)
+		logger.Debug("Debug Mode enabled")
+	}
+	logger.Info("Router initialised")
+}
+
+func (s *Server) InitHttpServer() {
+	addr := viper.GetString("server.host") + ":" + viper.GetString("server.port")
+	s.HttpServer = &http.Server{
+		Addr:    addr,
+		Handler: s.Router,
+	}
+	logger.Info("HttpServer initialised")
 }

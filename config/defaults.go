@@ -15,4 +15,9 @@ func SetDefaults() {
 	viper.SetDefault("database.port", "3306")
 	viper.SetDefault("database.name", "mystixapi")
 
+	// logger
+	viper.SetDefault("logger.debug", true)
+	viper.SetDefault("logger.logfile_path", "./log/")
+	viper.SetDefault("logger.logfile_name", "first_go_app.log")
+
 }

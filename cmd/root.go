@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"first_go_app/config"
+	"first_go_app/pkg/logger"
 	"fmt"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -27,7 +28,7 @@ func Execute() {
 }
 
 func init() {
-	cobra.OnInitialize(initConfig, config.SetDefaults)
+	cobra.OnInitialize(initConfig, config.SetDefaults, logger.Init)
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is ./config.json)")
 }
 
@@ -36,10 +37,8 @@ func initConfig() {
 	if cfgFile != "" {
 		viper.SetConfigFile(cfgFile)
 	} else {
-		viper.AddConfigPath(".")
-		viper.SetConfigName("config")
+		viper.SetConfigFile("./config.json")
 	}
-
 	viper.AutomaticEnv()
 
 	if err := viper.ReadInConfig(); err == nil {
@@ -47,4 +46,5 @@ func initConfig() {
 	}
 
 	//TODO if config file not exists create it with default values
+
 }
