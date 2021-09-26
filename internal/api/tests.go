@@ -79,6 +79,7 @@ func getTest(w http.ResponseWriter, r *http.Request) {
 	var test models.Test
 
 	id := utils.GetMuxParam(r, "id")
+
 	if id == "" {
 		utils.SendErrorResponse(w, http.StatusBadRequest, "invalid id")
 		return
