@@ -60,13 +60,14 @@ func (s *Server) InitDatabase() {
 }
 
 func (s *Server) InitApi() {
-	//TODO.....
 	api.Init(s.Router, s.Database)
 	logger.Info("Api initialised")
 }
 
 func (s *Server) InitRouter() {
 	s.Router.Use(middlewares.Json)
+	s.Router.NotFoundHandler = http.HandlerFunc(Custom404)
+	s.Router.MethodNotAllowedHandler = http.HandlerFunc(Custom405)
 	if viper.GetBool("logger.debug") {
 		s.Router.Use(middlewares.Logging)
 		logger.Debug("Debug Mode enabled")

@@ -1,7 +1,7 @@
 package middlewares
 
 import (
-	"fmt"
+	"first_go_app/pkg/logger"
 	"net/http"
 )
 
@@ -16,8 +16,7 @@ func Json(next http.Handler) http.Handler {
 // Logging middleware to log all requests for debugging
 func Logging(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		//logger.Debug(r.Method, " ", r.URL)
-		fmt.Println(r.URL)
+		logger.Debug("HOST: ", r.Host, "\nMETHOD: ", r.Method, "\nURL: ", r.URL, "\nHEADERS: ", r.Header, "\nBODY: ", r.Body)
 		next.ServeHTTP(w, r)
 	})
 }
