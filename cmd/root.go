@@ -3,7 +3,6 @@ package cmd
 import (
 	"first_go_app/config"
 	"first_go_app/pkg/logger"
-
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
@@ -24,17 +23,20 @@ var (
 // Execute executes the root command.
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
-		fmt.Println(err)
+		logger.Error(err)
 		os.Exit(1)
 	}
 }
 
 func init() {
-	cobra.OnInitialize(initConfig, config.SetDefaults, logger.Init)
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is ./config.json)")
+	initConfig()
 }
 
 func initConfig() {
+
+	cobra.OnInitialize(config.SetDefaults, logger.Init)
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is ./config.json)")
+
 	viper.SetConfigType("json")
 	if cfgFile != "" {
 		viper.SetConfigFile(cfgFile)

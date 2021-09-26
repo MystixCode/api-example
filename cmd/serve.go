@@ -12,7 +12,7 @@ var serve = &cobra.Command{
 	Short: "Start the API Server",
 	Long:  `Starts Database, Api, Router and HttpServer`,
 	Run: func(cmd *cobra.Command, args []string) {
-		logger.Info("Serving API Server...")
+		logger.Info("serve")
 		serve := server.New()
 		serve.Run()
 	},

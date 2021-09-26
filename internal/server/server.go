@@ -34,7 +34,7 @@ func (s *Server) Run() {
 	s.InitRouter()
 	s.InitHttpServer()
 
-	logger.Info("HTTP Server started listening on ", s.HttpServer.Addr)
+	logger.Info("HTTP Server started listening on http://", s.HttpServer.Addr)
 	logger.Fatal(s.HttpServer.ListenAndServe())
 }
 
@@ -74,7 +74,7 @@ func (s *Server) InitRouter() {
 		s.Router.Use(middlewares.Logging)
 		logger.Debug("Debug Mode enabled")
 	}
-	logger.Info("router initialised")
+	logger.Info("Router initialised")
 }
 
 func (s *Server) InitHttpServer() {

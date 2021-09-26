@@ -39,7 +39,7 @@ func Init() {
 // Debug are logged here
 func Debug(args ...interface{}) {
 	if viper.GetBool("logger.debug") {
-		col := color.New(color.FgHiBlack, color.BgBlue, color.Bold).SprintfFunc()
+		col := color.New(color.FgHiWhite, color.BgBlue, color.Bold).SprintfFunc()
 		logger.SetPrefix(col("DEBUG\t"))
 		logger.Println(fmt.Sprint(args...))
 	}
@@ -48,7 +48,7 @@ func Debug(args ...interface{}) {
 // Info  are logged here
 func Info(args ...interface{}) {
 	if viper.GetBool("logger.debug") {
-		col := color.New(color.FgHiBlack, color.BgGreen, color.Bold).SprintfFunc()
+		col := color.New(color.FgHiWhite, color.BgGreen, color.Bold).SprintfFunc()
 		logger.SetPrefix(col("INFO\t"))
 	} else {
 		logger.SetPrefix("INFO\t")
@@ -59,7 +59,7 @@ func Info(args ...interface{}) {
 // Warning  are logged here
 func Warning(args ...interface{}) {
 	if viper.GetBool("logger.debug") {
-		col := color.New(color.FgHiBlack, color.BgYellow, color.Bold).SprintfFunc()
+		col := color.New(color.FgHiWhite, color.BgYellow, color.Bold).SprintfFunc()
 		logger.SetPrefix(col("WARN\t"))
 	} else {
 		logger.SetPrefix("WARN\t")
@@ -70,7 +70,7 @@ func Warning(args ...interface{}) {
 // Error (normal errors) are logged here
 func Error(args ...interface{}) {
 	if viper.GetBool("logger.debug") {
-		col := color.New(color.FgHiBlack, color.BgHiRed, color.Bold).SprintfFunc()
+		col := color.New(color.FgHiWhite, color.BgHiRed, color.Bold).SprintfFunc()
 		logger.SetPrefix(col("ERROR\t"))
 	} else {
 		logger.SetPrefix("ERROR\t")
@@ -81,7 +81,7 @@ func Error(args ...interface{}) {
 // Fatal errors are logged here
 func Fatal(args ...interface{}) {
 	if viper.GetBool("logger.debug") {
-		col := color.New(color.FgHiBlack, color.BgRed, color.Bold).SprintfFunc()
+		col := color.New(color.FgHiWhite, color.BgRed, color.Bold).SprintfFunc()
 		logger.SetPrefix(col("FATAL\t"))
 	} else {
 		logger.SetPrefix("FATAL\t")
@@ -92,7 +92,7 @@ func Fatal(args ...interface{}) {
 // Panic errors are logged here
 func Panic(args ...interface{}) {
 	if viper.GetBool("logger.debug") {
-		col := color.New(color.FgHiBlack, color.BgHiMagenta, color.Bold).SprintfFunc()
+		col := color.New(color.FgHiWhite, color.BgHiMagenta, color.Bold).SprintfFunc()
 		logger.SetPrefix(col("PANIC\t"))
 	} else {
 		logger.SetPrefix("PANIC\t")
