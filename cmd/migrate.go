@@ -8,7 +8,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// migrateCmd represents the version command
+// migrateCmd creates database structure based on models
 var migrateCmd = &cobra.Command{
 	Use:   "migrate",
 	Short: "migrate database",
@@ -17,7 +17,7 @@ var migrateCmd = &cobra.Command{
 		serve.InitDatabase()
 		err := serve.Database.AutoMigrate(
 			models.User{},
-			//models.Test{},
+			models.Test{},
 		)
 		if err != nil {
 			logger.Fatal(err)

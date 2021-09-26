@@ -2,6 +2,7 @@ package utils
 
 import (
 	"fmt"
+	"github.com/gorilla/mux"
 
 	"encoding/json"
 	"net/http"
@@ -39,4 +40,9 @@ func SendErrorResponse(w http.ResponseWriter, status int, error interface{}) {
 	if err != nil {
 		fmt.Println(err)
 	}
+}
+
+func GetMuxParam(r *http.Request, index string) string {
+	params := mux.Vars(r)
+	return params[index]
 }

@@ -69,6 +69,7 @@ func (s *Server) InitRouter() {
 	s.Router.Use(middlewares.Json)
 	s.Router.NotFoundHandler = http.HandlerFunc(Custom404)
 	s.Router.MethodNotAllowedHandler = http.HandlerFunc(Custom405)
+	//if logger.debug == true use middlewares.Logging
 	if viper.GetBool("logger.debug") {
 		s.Router.Use(middlewares.Logging)
 		logger.Debug("Debug Mode enabled")
