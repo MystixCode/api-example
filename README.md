@@ -1,6 +1,9 @@
 # first_go_app
 
-## Get dependencies
+## Dependencies
+ - go
+ - a mysql/mariadb database
+
 ```bash
 go mod init
 ```
