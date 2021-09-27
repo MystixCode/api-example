@@ -1,10 +1,10 @@
 package api
 
 import (
-	"first_go_app/pkg/errors"
-	"first_go_app/pkg/logger"
-	"first_go_app/pkg/models"
-	"first_go_app/pkg/utils"
+	"api-example/pkg/errors"
+	"api-example/pkg/logger"
+	"api-example/pkg/models"
+	"api-example/pkg/utils"
 
 	"gorm.io/gorm"
 

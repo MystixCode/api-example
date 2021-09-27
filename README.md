@@ -1,4 +1,4 @@
-# first_go_app
+# api-example
 
 ## Dependencies
  - go
@@ -26,7 +26,7 @@ go mod init
   "logger": {
     "debug": true,
     "logfile_path": "./log/",
-    "logfile_name": "first_go_app.log"
+    "logfile_name": "api-example.log"
   }
 }
 ```

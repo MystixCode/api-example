@@ -1,9 +1,9 @@
 package cmd
 
 import (
-	"first_go_app/internal/server"
-	"first_go_app/pkg/logger"
-	"first_go_app/pkg/models"
+	"api-example/internal/server"
+	"api-example/pkg/logger"
+	"api-example/pkg/models"
 
 	"github.com/spf13/cobra"
 )

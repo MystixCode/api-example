@@ -1,7 +1,7 @@
 package middlewares
 
 import (
-	"first_go_app/pkg/logger"
+	"api-example/pkg/logger"
 
 	"net/http"
 )

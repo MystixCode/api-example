@@ -1,7 +1,7 @@
 package main
 
 import (
-	"first_go_app/cmd"
+	"api-example/cmd"
 )
 
 func main() {

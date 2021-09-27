@@ -15,7 +15,7 @@ func getIndex(w http.ResponseWriter, r *http.Request) {
 		Message string `json:"message"`
 	}{
 		Status:  http.StatusOK,
-		Message: "first_go_app root / endpoint",
+		Message: "api-example root / endpoint",
 	}
 
 	js, err := json.Marshal(msg)

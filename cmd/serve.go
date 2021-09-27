@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"first_go_app/internal/server"
-	"first_go_app/pkg/logger"
+	"api-example/internal/server"
+	"api-example/pkg/logger"
 
 	"github.com/spf13/cobra"
 )

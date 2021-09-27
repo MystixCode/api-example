@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"first_go_app/config"
-	"first_go_app/pkg/logger"
+	"api-example/config"
+	"api-example/pkg/logger"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
@@ -14,7 +14,7 @@ var cfgFile string
 
 var (
 	rootCmd = &cobra.Command{
-		Use:   "first_go_app",
+		Use:   "api-example",
 		Short: "My first go app",
 		Long:  `This app contains boilerplate for cli via cobra and boilerplate for json config via viper.`,
 	}

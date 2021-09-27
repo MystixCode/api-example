@@ -1,7 +1,7 @@
 package server
 
 import (
-	"first_go_app/pkg/utils"
+	"api-example/pkg/utils"
 
 	"net/http"
 )

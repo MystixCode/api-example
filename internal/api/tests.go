@@ -1,9 +1,9 @@
 package api
 
 import (
-	"first_go_app/pkg/errors"
-	"first_go_app/pkg/models"
-	"first_go_app/pkg/utils"
+	"api-example/pkg/errors"
+	"api-example/pkg/models"
+	"api-example/pkg/utils"
 
 	"encoding/json"
 	"net/http"

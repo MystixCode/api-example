@@ -1,9 +1,9 @@
 package server
 
 import (
-	"first_go_app/internal/api"
-	"first_go_app/internal/middlewares"
-	"first_go_app/pkg/logger"
+	"api-example/internal/api"
+	"api-example/internal/middlewares"
+	"api-example/pkg/logger"
 
 	"github.com/gorilla/mux"
 	"github.com/spf13/viper"

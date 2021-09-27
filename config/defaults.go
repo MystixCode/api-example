@@ -18,6 +18,6 @@ func SetDefaults() {
 	// logger
 	viper.SetDefault("logger.debug", true)
 	viper.SetDefault("logger.logfile_path", "./log/")
-	viper.SetDefault("logger.logfile_name", "first_go_app.log")
+	viper.SetDefault("logger.logfile_name", "api-example.log")
 
 }
