@@ -15,8 +15,8 @@ var cfgFile string
 var (
 	rootCmd = &cobra.Command{
 		Use:   "api-example",
-		Short: "My first go app",
-		Long:  `This app contains boilerplate for cli via cobra and boilerplate for json config via viper.`,
+		Short: "Example API",
+		Long:  `This is an example api written in go.`,
 	}
 )
 
