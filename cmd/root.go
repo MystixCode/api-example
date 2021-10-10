@@ -3,6 +3,7 @@ package cmd
 import (
 	"api-example/config"
 	"api-example/pkg/logger"
+
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 

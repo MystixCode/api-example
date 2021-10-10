@@ -59,9 +59,7 @@ func (c *Test) Save(db *gorm.DB, newTest *TestBeforeSave) error {
 }
 
 func (c *Test) GetByID(db *gorm.DB, id string) error {
-	var err error
-
-	err = db.Where(&Test{ID: id}).First(c).Error
+	var err error = db.Where(&Test{ID: id}).First(c).Error
 	if err != nil {
 		return err
 	}
@@ -73,6 +71,9 @@ func (c *Test) Update(db *gorm.DB, id string, newTest *TestBeforeSave) error {
 	var err error
 
 	err = c.GetByID(db, id)
+	if err != nil {
+		return err
+	}
 
 	if newTest.Name != "" {
 		c.Name = newTest.Name
@@ -93,9 +94,7 @@ func (c *Test) Update(db *gorm.DB, id string, newTest *TestBeforeSave) error {
 }
 
 func (c *Test) Delete(db *gorm.DB, id string) error {
-	var err error
-
-	err = db.Where(&Test{ID: id}).Delete(c).Error
+	var err error = db.Where(&Test{ID: id}).Delete(c).Error
 	if err != nil {
 		return err
 	}

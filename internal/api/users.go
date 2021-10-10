@@ -33,7 +33,7 @@ func getUsers(w http.ResponseWriter, r *http.Request) {
 		} else {
 			fmt.Println(err)
 			logger.Debug(err)
-			utils.SendErrorResponse(w, http.StatusInternalServerError, errors.ServerError.Error())
+			utils.SendErrorResponse(w, http.StatusInternalServerError, errors.ErrServerError.Error())
 		}
 		return
 	}

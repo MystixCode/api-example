@@ -3,13 +3,13 @@ package errors
 import "errors"
 
 var (
-	ServerError    = errors.New("internal server error please contact an administrator")
-	InvalidData    = errors.New("invalid data")
-	InvalidRequest = errors.New("invalid request")
-	RecordNotFound = errors.New("record not found")
+	ErrServerError    = errors.New("internal server error please contact an administrator")
+	ErrInvalidData    = errors.New("invalid data")
+	ErrInvalidRequest = errors.New("invalid request")
+	ErrRecordNotFound = errors.New("record not found")
 
-	InvalidID       = errors.New("invalid id")
-	InvalidPassword = errors.New("invalid password")
+	ErrInvalidID       = errors.New("invalid id")
+	ErrInvalidPassword = errors.New("invalid password")
 )
 
 func New(text string) error {

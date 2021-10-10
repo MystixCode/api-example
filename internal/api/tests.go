@@ -22,7 +22,7 @@ func getTests(w http.ResponseWriter, r *http.Request) {
 
 	tests, err := test.GetAll(db)
 	if err != nil {
-		if err == errors.RecordNotFound {
+		if err == errors.ErrRecordNotFound {
 			utils.SendErrorResponse(w, http.StatusBadRequest, err.Error())
 		} else {
 			utils.SendErrorResponse(w, http.StatusInternalServerError, err.Error())
@@ -49,17 +49,17 @@ func createTest(w http.ResponseWriter, r *http.Request) {
 
 	err := json.NewDecoder(r.Body).Decode(&newTest)
 	if newTest == (models.TestBeforeSave{}) {
-		utils.SendErrorResponse(w, http.StatusBadRequest, errors.InvalidData.Error())
+		utils.SendErrorResponse(w, http.StatusBadRequest, errors.ErrInvalidData.Error())
 		return
 	}
 	if err != nil {
-		utils.SendErrorResponse(w, http.StatusBadRequest, errors.InvalidData.Error())
+		utils.SendErrorResponse(w, http.StatusBadRequest, errors.ErrInvalidData.Error())
 		return
 	}
 
 	err = test.Save(db, &newTest)
 	if err != nil {
-		if err == errors.InvalidData {
+		if err == errors.ErrInvalidData {
 			utils.SendErrorResponse(w, http.StatusBadRequest, err.Error())
 		} else {
 			utils.SendErrorResponse(w, http.StatusInternalServerError, err.Error())
@@ -87,7 +87,7 @@ func getTest(w http.ResponseWriter, r *http.Request) {
 
 	err := test.GetByID(db, id)
 	if err != nil {
-		if err == errors.RecordNotFound {
+		if err == errors.ErrRecordNotFound {
 			utils.SendErrorResponse(w, http.StatusBadRequest, err.Error())
 		} else {
 			utils.SendErrorResponse(w, http.StatusInternalServerError, err.Error())
@@ -115,20 +115,20 @@ func updateTest(w http.ResponseWriter, r *http.Request) {
 
 	err := json.NewDecoder(r.Body).Decode(&newTest)
 	if newTest == (models.TestBeforeSave{}) {
-		utils.SendErrorResponse(w, http.StatusBadRequest, errors.InvalidData.Error())
+		utils.SendErrorResponse(w, http.StatusBadRequest, errors.ErrInvalidData.Error())
 		return
 	}
 	if err != nil {
-		utils.SendErrorResponse(w, http.StatusBadRequest, errors.InvalidData.Error())
+		utils.SendErrorResponse(w, http.StatusBadRequest, errors.ErrInvalidData.Error())
 		return
 	}
 
 	err = test.Update(db, id, &newTest)
 	if err != nil {
-		if err == errors.RecordNotFound {
+		if err == errors.ErrRecordNotFound {
 			utils.SendErrorResponse(w, http.StatusNotFound, err.Error())
 		}
-		if err == errors.InvalidData {
+		if err == errors.ErrInvalidData {
 			utils.SendErrorResponse(w, http.StatusBadRequest, err.Error())
 		} else {
 			utils.SendErrorResponse(w, http.StatusInternalServerError, err.Error())
@@ -155,7 +155,7 @@ func deleteTest(w http.ResponseWriter, r *http.Request) {
 
 	err := test.GetByID(db, id)
 	if err != nil {
-		if err == errors.RecordNotFound {
+		if err == errors.ErrRecordNotFound {
 			utils.SendErrorResponse(w, http.StatusBadRequest, err.Error())
 		} else {
 			utils.SendErrorResponse(w, http.StatusInternalServerError, err.Error())
@@ -165,7 +165,7 @@ func deleteTest(w http.ResponseWriter, r *http.Request) {
 
 	err = test.Delete(db, test.ID)
 	if err != nil {
-		if err == errors.RecordNotFound {
+		if err == errors.ErrRecordNotFound {
 			utils.SendErrorResponse(w, http.StatusBadRequest, err.Error())
 		} else {
 			utils.SendErrorResponse(w, http.StatusInternalServerError, err.Error())
